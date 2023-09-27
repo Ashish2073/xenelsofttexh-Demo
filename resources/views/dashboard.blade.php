@@ -241,6 +241,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title text-center" id="exampleModalLabel">Registration Form
                                             </h5>
+                                            <h3 id="successmessageadduser"></h3>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">&times;</button>
                                         </div>
@@ -348,10 +349,12 @@
                             <div class="modal fade" id="exampleModal1" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
+                                  
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title text-center" id="exampleModalLabel">Update Form
                                             </h5>
+                                            <h3 id="successmessageupdateuser"></h3>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">&times;</button>
                                         </div>
@@ -541,6 +544,10 @@
 
     </div>
     <script>
+
+        let successMessageUser=document.getElementById('successmessageadduser');
+        let successMessageUpdate=document.getElementById('successmessageupdateuser');
+
         let userName = document.getElementById('username');
         let userNameEdit = document.getElementById('username1');
         let userId = document.getElementById('usersId');
@@ -623,10 +630,26 @@
 
                     errorpassword.style.display = "none";
 
+                    successMessageUser.style.color="green";
+                    successMessageUser.style.display="block";
+                    successMessageUser.innerHTML="Users Data Add SuccessFully";
+
 
                 },
                 error: function(data) {
                     console.log(data.responseJSON.errors);
+                    successMessageUser.style.display="none";
+                    errorname.style.display = "block";
+
+                    erroremail.style.display = "block";
+
+                    erroraddress.style.display = "block";
+
+                    errormobile.style.display = "block";
+
+                    errorstatus.style.display = "block";
+
+                    errorpassword.style.display = "block";
                     if (data.responseJSON.errors.name) {
                         errorname.style.color = "red";
                         errorname.innerHTML = data.responseJSON.errors.name[0];
@@ -728,11 +751,31 @@
 
                     errorstatusedit.style.display = "none";
 
+                    successMessageUpdate.style.color="green";
+                    successMessageUpdate.style.display="block";
+                    successMessageUpdate.innerHTML="Users Data Update SuccessFully";
+
 
 
                 },
                 error: function(data) {
                     console.log(data);
+
+                    errornameedit.style.display = "block";
+
+                    erroremailedit.style.display = "block";
+
+                    erroraddressedit.style.display = "block";
+
+                    errormobileedit.style.display = "block";
+
+                    errorstatusedit.style.display = "block";
+
+                    successMessageUpdate.style.display="none";
+
+
+
+
                     if (data.responseJSON.errors.name) {
                         errornameedit.style.color = "red";
                         errornameedit.innerHTML = data.responseJSON.errors.name[0];
@@ -800,7 +843,7 @@
                 ajax: "{{ route('userlist') }}",
                 columns: [{
                         data: 'DT_RowIndex',
-                        
+
                     },
                     {
                         data: 'name',

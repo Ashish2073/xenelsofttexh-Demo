@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255','unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'mobile'=>['required','numeric','min:10','max:11','unique:'.User::class],
+            'mobile'=>['required','numeric','digits:11','unique:'.User::class],
             'address'=>['required','min:3'],
         ]);
 
@@ -96,7 +96,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->ignore($request->id)],
             
-            'mobile'=>['required','numeric','min:10','max:11',Rule::unique('users')->ignore($request->id)],
+            'mobile'=>['required','numeric','digits:11',Rule::unique('users')->ignore($request->id)],
             'address'=>['required','min:3'],
             'status'=>['required','in:0,1'],
           ]);
@@ -118,7 +118,7 @@ class RegisteredUserController extends Controller
           'name' => ['required', 'string', 'max:255'],
           'email' => ['required', 'string', 'email', 'max:255','unique:'.User::class],
           'password' => ['required', 'confirmed', Rules\Password::defaults()],
-          'mobile'=>['required','numeric','min:10','max:11','unique:'.User::class],
+          'mobile'=>['required','numeric','digits:11','unique:'.User::class],
           'address'=>['required','min:3'],
           'status'=>['required','in:0,1'],
       ]);
