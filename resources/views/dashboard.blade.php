@@ -225,7 +225,11 @@
                             <div class="p-1 text-gray-900">
 
                                 Total Active Users - {{ $users->count() }}
+                                  
 
+                            </div>
+                            <div class="p-1 text-gray-900">
+                                Total InActive Users-{{$inactiveusers->count()  }} 
                             </div>
                         </div>
                         <div class="col-lg-2">

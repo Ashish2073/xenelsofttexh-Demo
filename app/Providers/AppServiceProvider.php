@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('dashboard', function ($view) {
             $view->with('users', User::whereStatus(true)->whereRole('User')->get());
+            $view->with('inactiveusers', User::whereStatus(false)->whereRole('User')->get());
         });
     }
 
