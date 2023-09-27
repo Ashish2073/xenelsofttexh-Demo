@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
+
 use Yajra\DataTables\Facades\Datatables;
 
 class RegisteredUserController extends Controller
@@ -34,9 +36,9 @@ class RegisteredUserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255','unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'mobile'=>['required','numeric','min:10','unique:'.User::class],
+            'mobile'=>['required','numeric','min:10','max:11','unique:'.User::class],
             'address'=>['required','min:3'],
         ]);
 
@@ -60,14 +62,24 @@ class RegisteredUserController extends Controller
       public function userList(Request $request){
 
         if ($request->ajax()) {
-            $data =  User::whereStatus(true)->whereRole('User')->get();
+            // $data =  User::whereStatus(true)->whereRole('User')->get();
+            $data =  User::whereRole('User')->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<button type="button" class="btn bg-primary" data-bs-toggle="modal" onclick="edit('.$row->id.')"  data-bs-target="#exampleModal">Edit</button> <a href="javascript:void(0)" onclick="deleteuser('.$row->id.')" class="delete btn btn-danger btn-sm" >Delete</a>';
+                    $actionBtn = '<button type="button" class="btn bg-primary" data-bs-toggle="modal" onclick="edit('.$row->id.')"  data-bs-target="#exampleModal1">Edit</button> <a href="javascript:void(0)" onclick="deleteuser('.$row->id.')" class="delete btn btn-danger btn-sm" >Delete</a>';
                     return $actionBtn;
-                })
-                ->rawColumns(['action'])
+                })->addColumn('status',function($row){
+                  if($row->status==1){
+                    $satusColum='Active';
+                    return $satusColum;
+                  }else{
+                    $satusColum='InActive';
+                    return $satusColum;
+                  }
+                  
+                })->addIndexColumn()
+                ->rawColumns(['action','status'])
                 ->make(true);
         }
  
@@ -77,17 +89,52 @@ class RegisteredUserController extends Controller
 
 
       public function saveuser(Request $request){
+     
+
+        if(isset($request->id)){
+          $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->ignore($request->id)],
+            
+            'mobile'=>['required','numeric','min:10','max:11',Rule::unique('users')->ignore($request->id)],
+            'address'=>['required','min:3'],
+            'status'=>['required','in:0,1'],
+          ]);
+          User::where('id',$request->id)->update([
+            'name' => $request->name,
+            'username'=>explode('@',$request->email)[0].'_'.$request->mobile,
+            'address'=>$request->address,
+            'email' => $request->email,
+            'mobile'=>$request->mobile,
+            'status'=>$request->status,
+          ]);
+
+
+
+
+        }else{
+
+        $request->validate([
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255','unique:'.User::class],
+          'password' => ['required', 'confirmed', Rules\Password::defaults()],
+          'mobile'=>['required','numeric','min:10','max:11','unique:'.User::class],
+          'address'=>['required','min:3'],
+          'status'=>['required','in:0,1'],
+      ]);
+
         $user = User::create([
             'name' => $request->name,
             'username'=>explode('@',$request->email)[0].'_'.$request->mobile,
             'address'=>$request->address,
             'email' => $request->email,
             'mobile'=>$request->mobile,
+            'status'=>$request->status,
             'password' => Hash::make($request->password),
 
         ]);
                 
-        return $user;
+        }
 
 
 

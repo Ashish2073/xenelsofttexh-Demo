@@ -26,15 +26,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('userdata',[RegisteredUserController::class,'userList'])->name('userlist');
-Route::post('adduser',[RegisteredUserController::class,'saveuser'])->name('adduser');
-Route::post('edituser',[RegisteredUserController::class,'edituserdata'])->name('edituser');
-Route::post('deleteuser',[RegisteredUserController::class,'deleteuserdata'])->name('deleteuser');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('userdata',[RegisteredUserController::class,'userList'])->name('userlist');
+Route::post('adduser',[RegisteredUserController::class,'saveuser'])->name('adduser');
+Route::post('edituser',[RegisteredUserController::class,'edituserdata'])->name('edituser');
+Route::post('deleteuser',[RegisteredUserController::class,'deleteuserdata'])->name('deleteuser');
 });
 
 require __DIR__.'/auth.php';

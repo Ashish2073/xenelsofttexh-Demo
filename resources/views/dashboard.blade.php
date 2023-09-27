@@ -185,8 +185,39 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
 
+
+
                 </div>
+
+                @if (Auth::user()->role == 'User')
+                    <div class="p-6 text-gray-900">
+                        <h1>{{ Auth::user()->name }}<h1>
+                    </div>
+                    <div class="p-6 text-gray-900">
+                        <h1>{{ Auth::user()->username }}<h1>
+                    </div>
+
+                    <div class="p-6 text-gray-900">
+                        <h1>{{ Auth::user()->email }}<h1>
+                    </div>
+                    <div class="p-6 text-gray-900">
+                        <h1>{{ Auth::user()->mobile }}<h1>
+                    </div>
+
+                    <div class="p-6 text-gray-900">
+                        <h1>{{ Auth::user()->address }}<h1>
+                    </div>
+                @endif
+
+
+
+
+
+
             </div>
+
+
+
             @if (Auth::user()->role == 'Admin')
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="row">
@@ -194,14 +225,15 @@
                             <div class="p-1 text-gray-900">
 
                                 Total Active Users - {{ $users->count() }}
+
                             </div>
                         </div>
-                        <div class="col-lg-2" >
+                        <div class="col-lg-2">
                             <button type="button" class="btn bg-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                                Add More
+                                Add More User
                             </button>
-                        
+
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -219,12 +251,18 @@
                                                     <input type="text" class="form-control-plaintext" id="username"
                                                         value="">
                                                 </div>
+                                                <div>
+                                                    <h1 id="errorname"></h1>
+                                                </div>
                                             </div>
                                             <div class="mb-3 row">
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <input type="email" class="form-control" id="useremail"
                                                         name="useremail">
+                                                </div>
+                                                <div>
+                                                    <h1 id="erroremail"></h1>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
@@ -234,6 +272,9 @@
                                                     <input type="number" class="form-control" id="usermobile"
                                                         name="usermobile">
                                                 </div>
+                                                <div>
+                                                    <h1 id="errormobile"></h1>
+                                                </div>
                                             </div>
                                             <div class="mb-3 row">
                                                 <label for="inputPassword"
@@ -242,9 +283,24 @@
                                                     <input type="text" class="form-control" id="useraddress"
                                                         name="useraddress">
                                                 </div>
+                                                <div>
+                                                    <h1 id="erroraddress"></h1>
+                                                </div>
                                             </div>
+                                            <div class="mb-3 row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Status</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    id="userStatus">
+                                                    <option selected disabled>Select Status</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="0">Inactive</option>
 
-
+                                                </select>
+                                                <div>
+                                                    <h1 id="errorstatus"></h1>
+                                                </div>
+                                            </div>
 
                                             <div class="mb-3 row" id="divpassword">
                                                 <label for="inputPassword"
@@ -252,6 +308,9 @@
                                                 <div class="col-sm-10">
                                                     <input type="password" class="form-control" id="userpassword"
                                                         name="password">
+                                                </div>
+                                                <div>
+                                                    <h1 id="errorpassword"></h1>
                                                 </div>
                                             </div>
 
@@ -262,6 +321,9 @@
                                                 <div class="col-sm-10">
                                                     <input type="password" class="form-control"
                                                         id="userpassword_confirmation" name="password_confirmation">
+                                                </div>
+                                                <div>
+                                                    <h1 id="errorcpassword"></h1>
                                                 </div>
                                             </div>
 
@@ -283,14 +345,103 @@
 
 
 
+                            <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="exampleModalLabel">Update Form
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3 row">
+                                                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control-plaintext" hidden
+                                                        id="usersId" value="">
 
 
-                    
+
+
+                                                    <input type="text" class="form-control-plaintext"
+                                                        id="username1" value="">
+                                                </div>
+                                                <div>
+                                                    <h1 id="errornameedit"></h1>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="useremail1"
+                                                        name="useremail">
+                                                </div>
+                                                <div>
+                                                    <h1 id="erroremailedit"></h1>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Mobile</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="usermobile1"
+                                                        name="usermobile">
+                                                </div>
+                                                <div>
+                                                    <h1 id="errormobileedit"></h1>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="inputPassword"
+                                                    class="col-sm-2 col-form-label">Address</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="useraddress1"
+                                                        name="useraddress">
+                                                </div>
+                                                <div>
+                                                    <h1 id="erroraddressedit"></h1>
+                                                </div>
+                                            </div>
+
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="userStatusEdit">
+                                                <option selected disabled>Select Status</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+
+                                            </select>
+
+                                            <div>
+                                                <h1 id="errorstatusedit"></h1>
+                                            </div>
+
+
+
+                                            <button type="button" class="btn bg-success mt-3 m-auto"
+                                                data-toggle="modal" id="updateButton"
+                                                data-target="#success_tic">Update</button>
+
+                                        </div>
+                                        {{-- <div class="modal-footer"> --}}
+                                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                        {{-- </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
                         </div>
 
                         {{-- sucess modalll --}}
-                        
-                            {{-- <div id="success_tic" class="modal fade" role="dialog">
+
+                        {{-- <div id="success_tic" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->
@@ -315,7 +466,7 @@
 
                             </div> --}}
 
-                        
+
 
 
 
@@ -361,6 +512,7 @@
                     <th scope="col">Address</th>
                     <th scope="col">Email</th>
                     <th scope="col">Mobile</th>
+                    <th scope="col">status</th>
 
                     <th scope="col">Action</th>
                 </tr>
@@ -389,21 +541,57 @@
 
     </div>
     <script>
-         let userName = document.getElementById('username');
-            let userEmail = document.getElementById('useremail');
-            let userMobile = document.getElementById('usermobile');
-            let userAddress = document.getElementById('useraddress');
-            let userPassword = document.getElementById('userpassword');
-            let userConfirmPassword = document.getElementById('userpassword_confirmation');
-            let saveButton = document.getElementById('usersave');
-            let divpassword=document.getElementById('divpassword');
-            let divConfirmpassword=document.getElementById('divcpassword');
+        let userName = document.getElementById('username');
+        let userNameEdit = document.getElementById('username1');
+        let userId = document.getElementById('usersId');
 
-        document.getElementById('usersave').addEventListener("click", function savebmi1() {
-            divpassword.style.display="block";
-            divConfirmpassword.style.display="block";
+        let userEmail = document.getElementById('useremail');
+        let userEmailEdit = document.getElementById('useremail1');
 
-        
+        let userMobile = document.getElementById('usermobile');
+        let userMobileEdit = document.getElementById('usermobile1');
+
+        let userAddress = document.getElementById('useraddress');
+        let userAddressEdit = document.getElementById('useraddress1');
+
+
+        let userPassword = document.getElementById('userpassword');
+        let userConfirmPassword = document.getElementById('userpassword_confirmation');
+
+        let userStatus = document.getElementById('userStatus');
+        let userStatusEdit = document.getElementById('userStatusEdit');
+
+        let saveButton = document.getElementById('usersave');
+        let updateButton = document.getElementById('updateButton');
+
+        let divpassword = document.getElementById('divpassword');
+        let divConfirmpassword = document.getElementById('divcpassword');
+
+        let errorname = document.getElementById('errorname');
+        let erroremail = document.getElementById('erroremail');
+        let erroraddress = document.getElementById('erroraddress');
+        let errormobile = document.getElementById('errormobile');
+        let errorstatus = document.getElementById('errorstatus');
+        let errorpassword = document.getElementById('errorpassword');
+        let errorcpassword = document.getElementById('errorcpassword');
+
+
+
+        let errornameedit = document.getElementById('errornameedit');
+        let erroremailedit = document.getElementById('erroremailedit');
+        let erroraddressedit = document.getElementById('erroraddressedit');
+        let errormobileedit = document.getElementById('errormobileedit');
+        let errorstatusedit = document.getElementById('errorstatusedit');
+
+
+
+
+
+
+        document.getElementById('usersave').addEventListener("click", function saveusersdata() {
+
+
+
 
             $.ajax({
                 type: "POST",
@@ -414,13 +602,61 @@
                     address: userAddress.value,
                     mobile: userMobile.value,
                     password: userPassword.value,
+                    password_confirmation: userConfirmPassword.value,
                     email: userEmail.value,
+                    status: userStatus.value,
                     _token: $('meta[name="csrf-token"]').attr('content')
                 },
 
                 success: function(response) {
                     var oTable = $('#users_table').dataTable();
                     oTable.fnDraw(false);
+                    errorname.style.display = "none";
+
+                    erroremail.style.display = "none";
+
+                    erroraddress.style.display = "none";
+
+                    errormobile.style.display = "none";
+
+                    errorstatus.style.display = "none";
+
+                    errorpassword.style.display = "none";
+
+
+                },
+                error: function(data) {
+                    console.log(data.responseJSON.errors);
+                    if (data.responseJSON.errors.name) {
+                        errorname.style.color = "red";
+                        errorname.innerHTML = data.responseJSON.errors.name[0];
+                    }
+
+                    if (data.responseJSON.errors.email) {
+                        erroremail.style.color = "red";
+                        erroremail.innerHTML = data.responseJSON.errors.email[0];
+                    }
+
+                    if (data.responseJSON.errors.address) {
+                        erroraddress.style.color = "red";
+                        erroraddress.innerHTML = data.responseJSON.errors.address[0];
+                    }
+
+                    if (data.responseJSON.errors.mobile) {
+                        errormobile.style.color = "red";
+                        errormobile.innerHTML = data.responseJSON.errors.mobile[0];
+                    }
+
+                    if (data.responseJSON.errors.status) {
+                        errorstatus.style.color = "red";
+                        errorstatus.innerHTML = data.responseJSON.errors.status[0];
+                    }
+
+
+                    if (data.responseJSON.errors.password) {
+                        errorpassword.style.color = "red";
+                        errorpassword.innerHTML = data.responseJSON.errors.password[0];
+                    }
 
 
                 }
@@ -429,6 +665,9 @@
 
 
         });
+
+
+
 
 
         function edit(value) {
@@ -443,27 +682,89 @@
 
                 success: function(res) {
                     console.log(res);
-                    userName.value=res[0].name;
-                    userEmail.value=res[0].email;
-                     userMobile.value=res[0].mobile;
-                     userAddress.value=res[0].address;
-                     divpassword.style.display="none";
-                     divConfirmpassword.style.display="none";
-            
-            
-        
-                    
+                    userId.value = res[0].id;
+                    userNameEdit.value = res[0].name;
+                    userEmailEdit.value = res[0].email;
+                    userMobileEdit.value = res[0].mobile;
+                    userAddressEdit.value = res[0].address;
+                    userStatusEdit.value = res[0].status;
 
-                    // $('#CompanyModal').html("Edit Company");
-                    // $('#company-modal').modal('show');
-                    // $('#id').val(res.id);
-                    // $('#name').val(res.name);
-                    // $('#address').val(res.address);
-                    // $('#email').val(res.email);
                 }
             });
 
         };
+
+
+        document.getElementById('updateButton').addEventListener("click", function saveusersdata() {
+
+
+
+
+            $.ajax({
+                type: "POST",
+                url: "{{ url('adduser') }}",
+
+                data: {
+                    id: userId.value,
+                    name: userNameEdit.value,
+                    address: userAddressEdit.value,
+                    mobile: userMobileEdit.value,
+                    email: userEmailEdit.value,
+                    status: userStatusEdit.value,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+
+                success: function(response) {
+                    console.log(response);
+                    var oTable = $('#users_table').dataTable();
+                    oTable.fnDraw(false);
+                    errornameedit.style.display = "none";
+
+                    erroremailedit.style.display = "none";
+
+                    erroraddressedit.style.display = "none";
+
+                    errormobileedit.style.display = "none";
+
+                    errorstatusedit.style.display = "none";
+
+
+
+                },
+                error: function(data) {
+                    console.log(data);
+                    if (data.responseJSON.errors.name) {
+                        errornameedit.style.color = "red";
+                        errornameedit.innerHTML = data.responseJSON.errors.name[0];
+                    }
+
+                    if (data.responseJSON.errors.email) {
+                        erroremailedit.style.color = "red";
+                        erroremail.innerHTML = data.responseJSON.errors.email[0];
+                    }
+
+                    if (data.responseJSON.errors.address) {
+                        erroraddressedit.style.color = "red";
+                        erroraddressedit.innerHTML = data.responseJSON.errors.address[0];
+                    }
+
+                    if (data.responseJSON.errors.mobile) {
+                        errormobileedit.style.color = "red";
+                        errormobileedit.innerHTML = data.responseJSON.errors.mobile[0];
+                    }
+
+                    if (data.responseJSON.errors.status) {
+                        errorstatusedit.style.color = "red";
+                        errorstatusedit.innerHTML = data.responseJSON.errors.status[0];
+                    }
+
+                }
+
+            });
+
+
+        });
+
 
 
 
@@ -498,8 +799,8 @@
                 serverSide: true,
                 ajax: "{{ route('userlist') }}",
                 columns: [{
-                        data: 'id',
-                        name: 'id'
+                        data: 'DT_RowIndex',
+                        
                     },
                     {
                         data: 'name',
@@ -522,11 +823,17 @@
                         name: 'mobile'
                     },
                     {
+                        data: 'status',
+                        name: 'status',
+
+                    },
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,
                         searchable: false
                     },
+
                 ]
             });
 
