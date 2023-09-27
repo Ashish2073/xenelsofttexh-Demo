@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 
 Route::get('/', function () {
     
-    dd(Hash::make(123456789));
+    
     return view('welcome');
 });
 
