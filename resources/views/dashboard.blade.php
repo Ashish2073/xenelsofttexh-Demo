@@ -704,6 +704,7 @@
                 dataType: 'json',
 
                 success: function(res) {
+                    successMessageUpdate.style.display="none";
                     console.log(res);
                     userId.value = res[0].id;
                     userNameEdit.value = res[0].name;
