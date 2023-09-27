@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Hash;
 
 
 /*
@@ -18,7 +19,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     
-    
+    dd(Hash::make(123456789));
     return view('welcome');
 });
 
