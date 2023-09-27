@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 
 Route::get('/', function () {
     
-    
+   
     return view('welcome');
 });
 
