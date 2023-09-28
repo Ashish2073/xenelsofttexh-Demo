@@ -225,11 +225,11 @@
                             <div class="p-1 text-gray-900">
 
                                 Total Active Users - {{ $users->count() }}
-                                  
+
 
                             </div>
                             <div class="p-1 text-gray-900">
-                                Total InActive Users-{{$inactiveusers->count()  }} 
+                                Total InActive Users-{{ $inactiveusers->count() }}
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -353,7 +353,7 @@
                             <div class="modal fade" id="exampleModal1" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                  
+
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title text-center" id="exampleModalLabel">Update Form
@@ -548,9 +548,8 @@
 
     </div>
     <script>
-
-        let successMessageUser=document.getElementById('successmessageadduser');
-        let successMessageUpdate=document.getElementById('successmessageupdateuser');
+        let successMessageUser = document.getElementById('successmessageadduser');
+        let successMessageUpdate = document.getElementById('successmessageupdateuser');
 
         let userName = document.getElementById('username');
         let userNameEdit = document.getElementById('username1');
@@ -634,53 +633,61 @@
 
                     errorpassword.style.display = "none";
 
-                    successMessageUser.style.color="green";
-                    successMessageUser.style.display="block";
-                    successMessageUser.innerHTML="Users Data Add SuccessFully";
+                    successMessageUser.style.color = "green";
+                    successMessageUser.style.display = "block";
+                    successMessageUser.innerHTML = "Users Data Add SuccessFully";
 
 
                 },
                 error: function(data) {
                     console.log(data.responseJSON.errors);
-                    successMessageUser.style.display="none";
-                    errorname.style.display = "block";
+                    errorname.style.display = "none";
 
-                    erroremail.style.display = "block";
+                    erroremail.style.display = "none";
 
-                    erroraddress.style.display = "block";
+                    erroraddress.style.display = "none";
 
-                    errormobile.style.display = "block";
+                    errormobile.style.display = "none";
 
-                    errorstatus.style.display = "block";
+                    errorstatus.style.display = "none";
 
-                    errorpassword.style.display = "block";
+                    errorpassword.style.display = "none";
+
+                    successMessageUser.style.display = "none";
+
                     if (data.responseJSON.errors.name) {
                         errorname.style.color = "red";
+                        errorname.style.display = "block";
                         errorname.innerHTML = data.responseJSON.errors.name[0];
                     }
 
                     if (data.responseJSON.errors.email) {
                         erroremail.style.color = "red";
+                        erroremail.style.display = "block";
                         erroremail.innerHTML = data.responseJSON.errors.email[0];
                     }
 
                     if (data.responseJSON.errors.address) {
                         erroraddress.style.color = "red";
+                        erroraddress.style.display = "block";
                         erroraddress.innerHTML = data.responseJSON.errors.address[0];
                     }
 
                     if (data.responseJSON.errors.mobile) {
+                        errormobile.style.display = "block";
                         errormobile.style.color = "red";
                         errormobile.innerHTML = data.responseJSON.errors.mobile[0];
                     }
 
                     if (data.responseJSON.errors.status) {
+                        errorstatus.style.display = "block";
                         errorstatus.style.color = "red";
                         errorstatus.innerHTML = data.responseJSON.errors.status[0];
                     }
 
 
                     if (data.responseJSON.errors.password) {
+                        errorpassword.style.display = "block";
                         errorpassword.style.color = "red";
                         errorpassword.innerHTML = data.responseJSON.errors.password[0];
                     }
@@ -708,7 +715,7 @@
                 dataType: 'json',
 
                 success: function(res) {
-                    successMessageUpdate.style.display="none";
+                    successMessageUpdate.style.display = "none";
                     console.log(res);
                     userId.value = res[0].id;
                     userNameEdit.value = res[0].name;
@@ -756,9 +763,9 @@
 
                     errorstatusedit.style.display = "none";
 
-                    successMessageUpdate.style.color="green";
-                    successMessageUpdate.style.display="block";
-                    successMessageUpdate.innerHTML="Users Data Update SuccessFully";
+                    successMessageUpdate.style.color = "green";
+                    successMessageUpdate.style.display = "block";
+                    successMessageUpdate.innerHTML = "Users Data Update SuccessFully";
 
 
 
@@ -766,42 +773,47 @@
                 error: function(data) {
                     console.log(data);
 
-                    errornameedit.style.display = "block";
+                    errornameedit.style.display = "none";
 
-                    erroremailedit.style.display = "block";
+                    erroremailedit.style.display = "none";
 
-                    erroraddressedit.style.display = "block";
+                    erroraddressedit.style.display = "none";
 
-                    errormobileedit.style.display = "block";
+                    errormobileedit.style.display = "none";
 
-                    errorstatusedit.style.display = "block";
+                    errorstatusedit.style.display = "none";
 
-                    successMessageUpdate.style.display="none";
+                    successMessageUpdate.style.display = "none";
 
 
 
 
                     if (data.responseJSON.errors.name) {
+                        errornameedit.style.display = "block";
                         errornameedit.style.color = "red";
                         errornameedit.innerHTML = data.responseJSON.errors.name[0];
                     }
 
                     if (data.responseJSON.errors.email) {
+                        erroremailedit.style.display = "block";
                         erroremailedit.style.color = "red";
-                        erroremail.innerHTML = data.responseJSON.errors.email[0];
+                        erroremailedit.innerHTML = data.responseJSON.errors.email[0];
                     }
 
                     if (data.responseJSON.errors.address) {
+                        erroraddressedit.style.display = "block";
                         erroraddressedit.style.color = "red";
                         erroraddressedit.innerHTML = data.responseJSON.errors.address[0];
                     }
 
                     if (data.responseJSON.errors.mobile) {
+                        errormobileedit.style.display = "block";
                         errormobileedit.style.color = "red";
                         errormobileedit.innerHTML = data.responseJSON.errors.mobile[0];
                     }
 
                     if (data.responseJSON.errors.status) {
+                        errorstatusedit.style.display = "block";
                         errorstatusedit.style.color = "red";
                         errorstatusedit.innerHTML = data.responseJSON.errors.status[0];
                     }
