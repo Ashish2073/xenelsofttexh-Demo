@@ -190,29 +190,26 @@
                 </div>
 
                 @if (Auth::user()->role == 'User')
+                <div class="col-lg-6">
                     <div class="p-6 text-gray-900">
-                        <h1>{{ Auth::user()->name }}<h1>
+                        <h1>   Name - {{ Auth::user()->name }}<h1>
                     </div>
+                </div>
                     <div class="p-6 text-gray-900">
-                        <h1>{{ Auth::user()->username }}<h1>
-                    </div>
-
-                    <div class="p-6 text-gray-900">
-                        <h1>{{ Auth::user()->email }}<h1>
-                    </div>
-                    <div class="p-6 text-gray-900">
-                        <h1>{{ Auth::user()->mobile }}<h1>
+                      <h1>  UserName - {{ Auth::user()->username }}<h1>
                     </div>
 
                     <div class="p-6 text-gray-900">
-                        <h1>{{ Auth::user()->address }}<h1>
+                       <h1>  Email -{{ Auth::user()->email }}<h1>
+                    </div>
+                    <div class="p-6 text-gray-900">
+                      <h1>  Mobile - {{ Auth::user()->mobile }}<h1>
+                    </div>
+
+                    <div class="p-6 text-gray-900">
+                      <h1>Address-{{ Auth::user()->address }}<h1>  
                     </div>
                 @endif
-
-
-
-
-
 
             </div>
 
