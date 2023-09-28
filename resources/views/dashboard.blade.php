@@ -231,7 +231,7 @@
                         </div>
                         <div class="col-lg-2">
                             <button type="button" class="btn bg-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
+                                data-bs-target="#exampleModal" id="Addmore">
                                 Add More User
                             </button>
 
@@ -591,13 +591,40 @@
         let errorstatusedit = document.getElementById('errorstatusedit');
 
 
+document.getElementById('Addmore').addEventListener('click',function removedata(){
 
+    userName.value="";
+    userAddress.value="";
+     userMobile.value="";
+     userPassword.value="";
+     userConfirmPassword.value="";
+    userEmail.value="";
+     userStatus.value="";
+
+     errorname.style.display = "none";
+
+     erroremail.style.display = "none";
+
+     erroraddress.style.display = "none";
+
+      errormobile.style.display = "none";
+
+       errorstatus.style.display = "none";
+
+       errorpassword.style.display = "none";
+
+       successMessageUser.style.display = "none";
+
+
+
+
+})
 
 
 
         document.getElementById('usersave').addEventListener("click", function saveusersdata() {
-
-
+           
+                
 
 
             $.ajax({
@@ -618,6 +645,13 @@
                 success: function(response) {
                     var oTable = $('#users_table').dataTable();
                     oTable.fnDraw(false);
+                    // userName.value="";
+                    // userAddress.value="";
+                    // userMobile.value="";
+                    // userPassword.value="";
+                    // userConfirmPassword.value="";
+                    // userEmail.value="";
+                    // userStatus.value="";
                     errorname.style.display = "none";
 
                     erroremail.style.display = "none";
