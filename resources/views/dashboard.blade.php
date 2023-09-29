@@ -250,50 +250,70 @@
                                                 aria-label="Close">&times;</button>
                                         </div>
                                         <div class="modal-body">
+
                                             <div class="mb-3 row">
-                                                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                                <label for="username" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control-plaintext" id="username"
-                                                        value="">
+                                                    <input type="text" class="form-control" id="username" name="name">
+                        
                                                 </div>
                                                 <div>
-                                                    <h1 id="errorname"></h1>
+                                                    <h4 id="errorname"></h4>
                                                 </div>
                                             </div>
+
+
+                                         
+
+
+
+
+
+
+
+
+
+
+
+
                                             <div class="mb-3 row">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+                                                <label for="useremail" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <input type="email" class="form-control" id="useremail"
                                                         name="useremail">
                                                 </div>
                                                 <div>
-                                                    <h1 id="erroremail"></h1>
+                                                    <h4 id="erroremail"></h4>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="usermobile"
                                                     class="col-sm-2 col-form-label">Mobile</label>
                                                 <div class="col-sm-10">
                                                     <input type="number" class="form-control" id="usermobile"
                                                         name="usermobile">
                                                 </div>
                                                 <div>
-                                                    <h1 id="errormobile"></h1>
+                                                    <h4 id="errormobile"></h4>
                                                 </div>
                                             </div>
+
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="useraddress"
                                                     class="col-sm-2 col-form-label">Address</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="useraddress"
                                                         name="useraddress">
                                                 </div>
                                                 <div>
-                                                    <h1 id="erroraddress"></h1>
+                                                    <h4 id="erroraddress"></h4>
                                                 </div>
                                             </div>
+
+
+
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="userStatus"
                                                     class="col-sm-2 col-form-label">Status</label>
                                                 <select class="form-select" aria-label="Default select example"
                                                     id="userStatus">
@@ -303,32 +323,32 @@
 
                                                 </select>
                                                 <div>
-                                                    <h1 id="errorstatus"></h1>
+                                                    <h4 id="errorstatus"></h4>
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row" id="divpassword">
-                                                <label for="inputPassword"
+                                                <label for="userpassword"
                                                     class="col-sm-2 col-form-label">Password</label>
                                                 <div class="col-sm-10">
                                                     <input type="password" class="form-control" id="userpassword"
                                                         name="password">
                                                 </div>
                                                 <div>
-                                                    <h1 id="errorpassword"></h1>
+                                                    <h4 id="errorpassword"></h4>
                                                 </div>
                                             </div>
 
 
                                             <div class="mb-3 row" id="divcpassword">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">Confirm
+                                                <label for="userpassword_confirmation" class="col-sm-2 col-form-label">Confirm
                                                     Password</label>
                                                 <div class="col-sm-10">
                                                     <input type="password" class="form-control"
                                                         id="userpassword_confirmation" name="password_confirmation">
                                                 </div>
                                                 <div>
-                                                    <h1 id="errorcpassword"></h1>
+                                                    <h4 id="errorcpassword"></h4>
                                                 </div>
                                             </div>
 
@@ -359,57 +379,57 @@
                                             <h5 class="modal-title text-center" id="exampleModalLabel">Update Form
                                             </h5>
                                             <h3 id="successmessageupdateuser"></h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3 row">
-                                                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                                <label for="username1" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control-plaintext" hidden
+                                                    <input type="text" class="form-control" hidden
                                                         id="usersId" value="">
 
 
 
 
-                                                    <input type="text" class="form-control-plaintext"
+                                                    <input type="text" name="username" class="form-control"
                                                         id="username1" value="">
                                                 </div>
                                                 <div>
-                                                    <h1 id="errornameedit"></h1>
+                                                    <h4 id="errornameedit"></h4>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="useremail1"
                                                     class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <input type="email" class="form-control" id="useremail1"
                                                         name="useremail">
                                                 </div>
                                                 <div>
-                                                    <h1 id="erroremailedit"></h1>
+                                                    <h4 id="erroremailedit"></h4>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="usermobile1"
                                                     class="col-sm-2 col-form-label">Mobile</label>
                                                 <div class="col-sm-10">
                                                     <input type="number" class="form-control" id="usermobile1"
                                                         name="usermobile">
                                                 </div>
                                                 <div>
-                                                    <h1 id="errormobileedit"></h1>
+                                                    <h4 id="errormobileedit"></h4>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
-                                                <label for="inputPassword"
+                                                <label for="useraddress1"
                                                     class="col-sm-2 col-form-label">Address</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="useraddress1"
                                                         name="useraddress">
                                                 </div>
                                                 <div>
-                                                    <h1 id="erroraddressedit"></h1>
+                                                    <h4 id="erroraddressedit"></h4>
                                                 </div>
                                             </div>
 
@@ -422,7 +442,7 @@
                                             </select>
 
                                             <div>
-                                                <h1 id="errorstatusedit"></h1>
+                                                <h4 id="errorstatusedit"></h4>
                                             </div>
 
 

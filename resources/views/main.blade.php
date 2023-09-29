@@ -23,7 +23,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> 
         
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
