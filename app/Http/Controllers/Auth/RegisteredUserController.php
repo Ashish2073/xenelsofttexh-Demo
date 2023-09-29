@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 
 use Yajra\DataTables\Facades\Datatables;
 
@@ -31,6 +32,78 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+public function registeruser(Request $request){
+
+  
+
+  $request->validate([
+    'name' => ['required', 'string', 'max:255'],
+    'email' => ['required', 'string', 'email', 'max:255','unique:'.User::class],
+    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    'mobile'=>['required','numeric','digits:11','unique:'.User::class],
+    'address'=>['required','min:3'],
+]);
+
+$user = User::create([
+    'name' => $request->name,
+    'username'=>explode('@',$request->email)[0].'_'.$request->mobile,
+    'address'=>$request->address,
+    'email' => $request->email,
+    'mobile'=>$request->mobile,
+    'password' => Hash::make($request->password),
+
+]);
+
+if($user){
+  return redirect('/userlogin')->with('success','You have registered Succesfully,Please Login....');
+}else{
+  return back()->with('fail','Somthing goes Wroung....');
+}
+
+
+
+
+
+}
+
+
+public function loginuser(Request $request){
+
+  if($request->isMethod('get')){
+    return view('userlogin');
+  }
+
+  if($request->isMethod('post')){
+    
+    $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+          $user = Auth::user();
+        Session::put('user_id', $user->id);
+        Session::put('user_name', $user->name);
+            // Authentication passed...
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials Please Checkit'])->withInput($request->only('email'));
+  }
+
+
+
+}
+
+public function userlogout(){
+  Auth::logout();
+  Session::flush();
+  return redirect('/userlogin'); 
+}
+
+
+
+
+
+
     public function store(Request $request): RedirectResponse
     {
 

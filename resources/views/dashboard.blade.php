@@ -1,11 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-
-
-        </h2>
-    </x-slot>
+@extends('main')
+@section('content')
 
 
     <style>
@@ -177,13 +171,20 @@
         }
     </style>
 
+    <a href="{{ route('userlogout') }}" class="btn bg-warning d-grid gap-2 d-md-flex justify-content-md-end">
+      Plese Click For  Logout
+</a>
+
 
 
     <div class="py-12">
+
+        
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <h1>{{ Auth::user()->name }}</h1>   {{ __("You're logged in!") }}
 
 
 
@@ -212,7 +213,7 @@
                 @endif
 
             </div>
-
+            
 
 
             @if (Auth::user()->role == 'Admin')
@@ -234,6 +235,8 @@
                                 data-bs-target="#exampleModal" id="Addmore">
                                 Add More User
                             </button>
+
+                           
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
@@ -932,4 +935,4 @@ document.getElementById('Addmore').addEventListener('click',function removedata(
 
         });
     </script>
-</x-app-layout>
+@endsection

@@ -17,11 +17,17 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-Route::get('/', function () {
-    
-   
-    return view('welcome');
+
+
+Route::middleware('guestprevent')->group(function () {
+    Route::get('/', function () {
+     return view('registration');
+    });
+Route::post('userregistration',[RegisteredUserController::class,'registeruser'])->name('userregistration');
+Route::match(['get','post'],'userlogin',[RegisteredUserController::class,'loginuser'])->name('userlogin');
+
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,6 +43,7 @@ Route::middleware('auth')->group(function () {
 Route::post('adduser',[RegisteredUserController::class,'saveuser'])->name('adduser');
 Route::post('edituser',[RegisteredUserController::class,'edituserdata'])->name('edituser');
 Route::post('deleteuser',[RegisteredUserController::class,'deleteuserdata'])->name('deleteuser');
+Route::get('userlogout', [RegisteredUserController::class,'userlogout'])->name('userlogout');
 });
 
-require __DIR__.'/auth.php';
+ require __DIR__.'/auth.php';
